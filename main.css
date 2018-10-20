@@ -29,3 +29,14 @@ html, body {
 #regen:hover {
 	cursor: pointer;
 }
+
+footer {
+	position: fixed;
+	left: 20px;
+	bottom: 20px;
+	color: grey;
+}
+
+footer > a {
+	color: grey;
+}
