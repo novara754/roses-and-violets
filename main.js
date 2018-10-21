@@ -6,8 +6,8 @@ async function main() {
 }
 
 function regenerate() {
-	const randomRed = randomFrom(colors, 'red', 100);
-	const randomBlue = randomFrom(colors, 'blue', 100);
+	const randomRed = randomFrom(colors, 'red', 100, 50);
+	const randomBlue = randomFrom(colors, 'blue', 100, 50);
 
 	const redText = document.getElementById('red-text');
 	redText.innerText = randomRed.name;
@@ -17,9 +17,9 @@ function regenerate() {
 	blueText.setAttribute('style', `color: rgb(${randomBlue.rgb})`);
 }
 
-function randomFrom(colors, colorName, range) {
+function randomFrom(colors, colorName, maxRange, offset) {
 	const color = colors[colorName];
-	const newColor = addRandomVector(color, range);
+	const newColor = addRandomVector(color, maxRange, offset);
 	return findClosest(colors, newColor);
 }
 
@@ -44,7 +44,8 @@ function distance(a, b) {
 	return Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2) + Math.pow(a[2] - b[2], 2));
 }
 
-function addRandomVector(vector, range) {
+function addRandomVector(vector, maxRange, offset) {
+	const range = Math.random() * maxRange + offset;
 	const theta = Math.random() * Math.PI * 2;
 	const phi = Math.random() * Math.PI * 2;
 	const r = range * Math.sin(phi) * Math.cos(theta);
